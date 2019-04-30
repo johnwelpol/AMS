@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Modules\Authentication\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 
-class AuthController extends Controller
+class AuthenticationController extends Controller
 {
     /**
      * Create a new AuthController instance.

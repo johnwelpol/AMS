@@ -1,7 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Modules\Authentication\Model;
 
+use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -17,7 +18,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username','name', 'email', 'password',
     ];
 
     /**
