@@ -1,14 +1,22 @@
 <?php
+
+$admin = function () {
+    //User Resource
+    Route::post('user/landlord', 'UserController@addLandLord');
+    Route::apiResource('user','UserController');
+};
+
+
 Route::group([
-
-    'prefix' => 'auth'
-
-], function ($router) {
-    Route::post('login', 'AuthenticationController@login');
+    'middleware' => ['jwt.auth']
+], function ($router) use ($admin) {
     Route::post('logout', 'AuthenticationController@logout');
     Route::post('refresh', 'AuthenticationController@refresh');
     Route::post('me', 'AuthenticationController@me');
-    Route::post('user/landlord', 'UserController@addLandLord')->middleware(['jwt.auth']);
 
-    Route::apiResource('user','UserController')->middleware(['jwt.auth']);
+    Route::group(['middleware' => 'role:admin'],$admin);
 });
+
+
+
+Route::post('login', 'AuthenticationController@login');
