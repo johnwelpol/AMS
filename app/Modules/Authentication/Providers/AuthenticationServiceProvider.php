@@ -2,8 +2,10 @@
 
 namespace App\Modules\Authentication\Providers;
 
+use App\Modules\Authentication\Observer\UserObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
+use App\Modules\Authentication\Model\User;
 
 class AuthenticationServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,8 @@ class AuthenticationServiceProvider extends ServiceProvider
         $this->registerViews();
         $this->registerFactories();
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
+
+        User::observe(UserObserver::class);
     }
 
     /**

@@ -8,5 +8,7 @@ Route::group([
     Route::post('logout', 'AuthenticationController@logout');
     Route::post('refresh', 'AuthenticationController@refresh');
     Route::post('me', 'AuthenticationController@me');
+    Route::post('user/landlord', 'UserController@addLandLord')->middleware(['jwt.auth']);
 
+    Route::apiResource('user','UserController')->middleware(['jwt.auth']);
 });
