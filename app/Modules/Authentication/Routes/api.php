@@ -1,6 +1,6 @@
 <?php
 
-$admin = function () {
+$adminRoute = function () {
     //User Resource
     Route::post('user/landlord', 'UserController@addLandLord');
     Route::apiResource('user','UserController');
@@ -9,12 +9,11 @@ $admin = function () {
 
 Route::group([
     'middleware' => ['jwt.auth']
-], function ($router) use ($admin) {
+], function () use ($adminRoute) {
     Route::post('logout', 'AuthenticationController@logout');
     Route::post('refresh', 'AuthenticationController@refresh');
     Route::post('me', 'AuthenticationController@me');
-
-    Route::group(['middleware' => 'role:admin'],$admin);
+    Route::group(['middleware' => 'role:admin'],$adminRoute);
 });
 
 

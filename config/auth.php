@@ -71,7 +71,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => User::class,
-        ],
+        ]
 
         // 'users' => [
         //     'driver' => 'database',

@@ -33,7 +33,10 @@ class AuthenticationController extends Controller
             return $this->respondWithToken($token);
         }
 
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json([
+            'status' => 401,
+            'message' => 'Unauthorized'
+        ], 401);
     }
 
     /**
