@@ -28,7 +28,12 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
+        Event::listen('tymon.jwt.invalid', function () {
+            return \Response::make(['message' => 'token is invalid'], 400);
+        });
+        Event::listen('tymon.jwt.expired', function () {
+            return \Response::make(['message' => 'token is expired'], 400);
+        });
         //
     }
 }
